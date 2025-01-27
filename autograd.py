@@ -4,12 +4,6 @@ import inspect
 from functools import partial
 import types
 from shapflow.flow import CausalLinks, build_feature_graph
-# from shapflow.flow import Node, CreditFlow, Graph, get_source_nodes, flatten_graph, eval_graph, boundary_graph, single_source_graph, viz_graph, save_graph, hcluster_graph
-# from shapflow.flow import ParallelCreditFlow, GraphExplainer, translator
-# from shapflow.flow import group_nodes, build_feature_graph
-# from shapflow.flow import CausalLinks, create_xgboost_f, create_linear_f
-# from shapflow.flow import edge_credits2edge_credit
-# from shapflow.on_manifold import OnManifoldExplainer, IndExplainer, FeatureAttribution
 
 
 class Value:
@@ -312,6 +306,7 @@ def trace(root):
     build(root)
     return nodes, edges
 
+
 def draw_computational_graph(root, format='png', rankdir='LR', disable_data_field=False, disable_grad_field=False):
     """
     Creates a computational digraph
@@ -342,6 +337,7 @@ def draw_computational_graph(root, format='png', rankdir='LR', disable_data_fiel
         dot.edge(str(id(n1)), str(id(n2)) + n2._op)
 
     return dot
+
 
 def draw_computational_graph_with_score(root, format='png', rankdir='LR'):
     """
