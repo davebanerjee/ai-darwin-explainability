@@ -1,0 +1,48 @@
+These are the mean of the 16 input variables:
+
+Mean of inputs: [1.69549721e+00 8.56000000e+01 1.98440851e+01 4.07765062e+00
+ 6.15043041e+00 2.98275390e-01 3.50914309e+02 5.75158192e+02
+ 3.00530207e+02 5.56970462e-02 1.08605378e+02 4.31896728e-03
+ 8.58361379e-02 4.27631152e+00 6.25120531e+00 6.16939641e+00]
+
+These are the standard deviations of the 16 input variables:
+
+Standard deviation of inputs: [1.71983384e-01 6.41499751e+01 2.49241835e+00 1.75228336e+00
+ 2.10119045e+00 9.36641554e-02 2.90848491e+02 3.95399781e+02
+ 3.56198879e+02 5.88478099e-02 1.59606663e+02 1.21848688e-02
+ 6.97540492e-02 1.75895595e+00 2.13569444e+00 2.10808166e+00]
+
+Please note that the variables used in the model are normalized: normalized var = (input var - mean of input var)/(std dev of input var)
+
+f1 = 1/((AV)**2)*np.exp(largest_included_sphere_free); beta1 = -0.3594413972218853
+f2 = ((lcd)**2)/np.exp(-surf_area_m2g)/np.exp(-volume); beta2 = 0.7236283377256563
+f3 = 1*np.exp(ASA)/np.exp(volume); beta3 = -2.491688880718375
+f4 = ((AV)**3)*((largest_included_sphere)**3)*1; beta4 = 0.09275076505414136
+f5 = np.exp(-largest_included_sphere_free)/((AV)**2)/np.exp(surf_area_m2cm3); beta5 = 0.9655176044485131
+f6 = 1/np.exp(VolFrac)*np.exp(void_frac); beta6 = 6.602116824421418
+f7 = (density)/np.exp(-largest_included_sphere_free)*((NASA)**3); beta7 = -8.506535242975505e-06
+f8 = 1*np.exp(spg)*np.exp(surf_area_m2g); beta8 = -1.613293940314934
+f9 = np.exp(spg)/np.exp(NAV)/np.exp(void_frac); beta9 = 1.275887158343305
+f10 = (NASA)*((ASA)**3)/np.exp(lcd); beta10 = -4.973935475022366e-06
+f11 = 1/np.exp(volume)/np.exp(AV); beta11 = -3.3528986757269825
+f12 = 1*np.exp(density)*np.exp(ASA); beta12 = 2.5511241106011875
+f13 = np.exp(largest_included_sphere)/(surf_area_m2g)*np.exp(-surf_area_m2g); beta13 = 0.00015360330426490517
+f14 = np.exp(-ASA)/np.exp(surf_area_m2g)/(largest_included_sphere_free); beta14 = -5.8135254289460757e-05
+
+intercept = 0
+
+theta = beta1*((f1*P)/(1 + f1*P)) + beta2*((f2*P)/(1 + f2*P)) + beta3*((f3*P)/(1 + f3*P)) + beta4*((f4*P)/(1 + f4*P)) + beta5*((f5*P)/(1 + f5*P)) + beta6*((f6*P)/(1 + f6*P)) + beta7*((f7*P)/(1 + f7*P)) + beta8*((f8*P)/(1 + f8*P)) + beta9*((f9*P)/(1 + f9*P)) + beta10*((f10*P)/(1 + f10*P)) + beta11*((f11*P)/(1 + f11*P)) + beta12*((f12*P)/(1 + f12*P)) + beta13*((f13*P)/(1 + f13*P)) + beta14*((f14*P)/(1 + f14*P))
+yt = theta + intercept
+
+Intercept: 0.0
+
+Coefficients: [-3.59441397e-01  7.23628338e-01 -2.49168888e+00  9.27507651e-02
+  9.65517604e-01  6.60211682e+00 -8.50653524e-06 -1.61329394e+00
+  1.27588716e+00 -4.97393548e-06 -3.35289868e+00  2.55112411e+00
+  1.53603304e-04 -5.81352543e-05]
+
+Train + Test R²: 0.7773144791629002 | Train + Test MAE: 0.4381405136273979
+
+Train R²: 0.7500531193746451 | Train MAE: 0.45547187288908536
+
+Test R²: 0.8552991097046031 | Test MAE: 0.372007695392012
