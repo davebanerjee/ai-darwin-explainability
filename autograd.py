@@ -109,6 +109,19 @@ class Value:
 
         return out
 
+    def abs(self):
+        new_label = '|' + self.label + '|'
+        if new_label in Value.values_used_so_far:
+            out = Value.values_used_so_far[new_label]
+        else:
+            out = Value(np.abs(self.data), (self,), 'abs', '|' + self.label + '|')
+
+        def _backward():
+            self.grad += np.sign(self.data) * out.grad
+        out._backward = _backward
+
+        return out
+
     def exp(self):
         new_label = 'e^(' + self.label + ')'
         if new_label in Value.values_used_so_far:
@@ -240,6 +253,9 @@ def op_to_function(op):
     def mul(a, b):
         return a * b
 
+    def abs(a):
+        return np.abs(a)
+
     def exp(a):
         return np.exp(a)
 
@@ -255,6 +271,8 @@ def op_to_function(op):
         return partial(pow, exponent=exponent)
     elif op == 'exp':
         return exp
+    elif op == 'abs':
+        return abs
     else:
         raise NotImplementedError(f"operation {op} is not implemented.")
 
