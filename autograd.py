@@ -32,9 +32,6 @@ class Value:
             # add this new instance of Value to dict of all Values created thus far
             Value.values_used_so_far[self.label] = self
 
-        # print(f"Value {self.label} init")
-        # pprint(Value.values_used_so_far)
-
     def __add__(self, other):
         if not isinstance(other, Value):
             # Check if there is already another instance of 'other'
@@ -226,10 +223,11 @@ def get_function_arguments(func):
     return [param.name for param in signature.parameters.values()]
 
 
-def populate_dataframe(df, AI_DARWIN_function):
+def populate_dataframe(df, AI_DARWIN_function, debug=False):
     """Populates a dataframe with every intermediate term in an AI-Darwin equation"""
     input_var_names = get_function_arguments(AI_DARWIN_function)
-    print(input_var_names)
+    if debug:
+        print(input_var_names)
     # Iterate through each row in df
     for index, row in df.iterrows():
         input_vars = list(row[input_var_names])
