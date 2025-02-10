@@ -302,7 +302,8 @@ def build_causal_graph(root, df, target_name, debug=False):
                 print(parent_labels, n.label)
                 print(f)
                 print('\n')
-    print(causal_links.items)
+    if debug:
+        print(causal_links.items)
     causal_graph = build_feature_graph(df.fillna(df.mean()), causal_links, target_name=target_name)
     return causal_graph
 
