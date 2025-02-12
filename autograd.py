@@ -298,10 +298,8 @@ def build_causal_graph(root, df, target_name, debug=False):
 
             causal_links.add_causes_effects(parent_labels, n.label, f)
             if debug:
-                print(parent_labels)
                 print(parent_labels, n.label)
-                print(f)
-                print('\n')
+                print(f, end='\n')
     if debug:
         print(causal_links.items)
     causal_graph = build_feature_graph(df.fillna(df.mean()), causal_links, target_name=target_name)
