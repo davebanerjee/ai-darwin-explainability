@@ -6,8 +6,8 @@ Modified by: Dave Banerjee
 The word baseline is used interchangeably with background
 
 Dave Banerjee modifications:
-- changed positive edges to blue and negative edges to red
 - disabled the tqdm progress bar in fit_missing_links method of Graph class
+- changed positive edges to blue and negative edges to red in credit2dot_pygraphviz method of CreditFlow class
 '''
 import subprocess
 import time
@@ -862,9 +862,9 @@ class CreditFlow:
                 red = "#ff0051"
                 blue = "#008bfb"
                 if idx < 0:
-                    color = f"{blue}ff"
+                    color = f"{red}ff"
                 else:
-                    color = f"{blue}ff" if v < 0 else f"{red}ff" # blue and red
+                    color = f"{red}ff" if v < 0 else f"{blue}ff" # blue and red
                 
                 max_w = 5
                 min_w = 0.05
@@ -911,10 +911,10 @@ class CreditFlow:
                     int(abs(v) / max_v * (max_c - min_c) + min_c)
                 )[2:]) # skip 0x
                 if idx < 0:
-                    e.attr["fontcolor"] = f"{blue}{alpha}"
+                    e.attr["fontcolor"] = f"{red}{alpha}"
                 else:
-                    e.attr["fontcolor"] = f"{blue}{alpha}" if v < 0 else\
-                        f"{red}{alpha}"
+                    e.attr["fontcolor"] = f"{red}{alpha}" if v < 0 else\
+                        f"{blue}{alpha}"
         return G
         
     def credit2dot(self, raw_edge_credit,
