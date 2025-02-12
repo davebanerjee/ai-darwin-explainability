@@ -147,7 +147,7 @@ class Graph:
 
         nodes_to_learn = [n for n in self.nodes \
                           if n.f is None and len(n.args) != 0]
-        pbar = tqdm.tqdm(nodes_to_learn, disable=True)
+        pbar = tqdm.tqdm(nodes_to_learn, disable=True) # Dave's modification: disable progress bar
         for node in pbar:
             pbar.set_description(f'learning dependency for {node.name}')
 
